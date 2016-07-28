@@ -11,7 +11,7 @@ install.packages(c("jsonlite","plyr","httr","stringr","digest","base64enc"))
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
-#HCF - Authorisation
+Authorisation
 
 SCAuth("username:accountName", "sharedSecret") # Change this according to the account you're using
 
@@ -24,7 +24,7 @@ yesterday_date <- today_date - 1
   
 date.from <- yesterday_date
 date.to <- today_date
-reportsuite.id <- "reportSuiteName"
+reportsuite.id <- "your_report_suite"
 metrics <- c("visits","pageviews", "event40",
              "event15", "event2", "event32", "event4")
 report.data.overtime<- QueueOvertime(reportsuite.id, date.from, date.to, metrics)
@@ -48,7 +48,7 @@ View(report.data.overtime)
 
 date.from <- "2014-01-01"
 date.to <- "2015-01-11"
-reportsuite.id <- "hcf-website-prd"
+reportsuite.id <- "your_report_suite"
 metrics <- c("visits","uniquevisitors","pageviews","event10")
 report.data <- QueueRanked(reportsuite.id, date.from, date.to, metrics, elements)
 View(report.data)
@@ -72,7 +72,7 @@ View(report.data)
 # QueueTrended - an ordered list of elements and associated metrics with time granularity.
 date.from <- "2016-02-03"
 date.to <- "2016-03-8"
-reportsuite.id <- "hcf-website-prd"
+reportsuite.id <- "your_report_suite"
 metrics <- c("visits","pageviews", "event40",
              "event15", "event2", "event32", "event4")
 elements <- c("page","geoCountry","geoCity")
@@ -100,7 +100,7 @@ View(report.data.trended)
 
 date.from <- "2014-01-01"
 date.to <- "2014-01-07"
-reportsuite.id <- "hcf-website-prd"
+reportsuite.id <- "your_report_suite"
 metric <- "pageviews"
 element <- "page"
 pattern <- c("Home","::anything::","::anything::")
@@ -113,7 +113,7 @@ report.data <- QueuePathing(reportsuite.id, date.from, date.to, metric, element,
 
 date.from <- "2014-01-01"
 date.to <- "2014-01-07"
-reportsuite.id <- "hcf-website-prd"
+reportsuite.id <- "your_report_suite"
 metrics <- c("visits","uniquevisitors","pageviews","event10")
 element <- "page"
 checkpoints <- c("Home","Contact","ThankYou")
@@ -123,22 +123,22 @@ report.data <- QueuePathing(reportsuite.id, date.from, date.to, metrics, element
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
 #Get Elements
-elements.valid <- GetElements("hcf-website-prd",metrics=c('visitors','pageviews'),elements=c('page','geoCountry'),date.granularity='day')
+elements.valid <- GetElements("your_report_suite",metrics=c('visitors','pageviews'),elements=c('page','geoCountry'),date.granularity='day')
 
 #Get Metrics
-metrics.valid <- GetMetrics("hcf-website-prd",metrics=c('visitors','pageviews'),elements=c('page','geoCountry'),date.granularity='day')
+metrics.valid <- GetMetrics("your_report_suite",metrics=c('visitors','pageviews'),elements=c('page','geoCountry'),date.granularity='day')
 
 #Get Evars
-evars <- GetEvars(c("hcf-website-prd","hcf-website-dev"))
+evars <- GetEvars(c("your_report_suite","your_report_suite"))
 
 #Get Props
-props <- GetProps(c("hcf-website-prd","hcf-website-dev"))
+props <- GetProps(c("your_report_suite","your_report_suite"))
 
 #Get Successfull Events
-successevents <- GetSuccessEvents(c("hcf-website-prd","hcf-website-dev"))
+successevents <- GetSuccessEvents(c("your_report_suite","your_report_suite"))
 
 #Get Segments
-segments <- GetSegments(c("hcf-website-prd","hcf-website-dev"))
+segments <- GetSegments(c("your_report_suite","your_report_suite"))
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
