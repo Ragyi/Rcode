@@ -243,7 +243,7 @@ scatter3d(event40 ~ pageviews * event15, data=data.kmeans, fit="smooth", surface
 #Shiny App
   
 library(shiny)
-runApp('hcf')
+runApp('your_app_name')
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
