@@ -8,7 +8,7 @@ library(RSiteCatalyst)
 install.packages(c("jsonlite","plyr","httr","stringr","digest","base64enc"))
 
 library(RSiteCatalyst)
-SCAuth("joey.nguyen:Fairfax AU", "c5c115b5e1078a176a2b7e37fbaaf85f")
+SCAuth("username", "shared secret")
 
 reportsuites <- GetReportSuites()
 View(reportsuites)
@@ -19,7 +19,7 @@ View(reportsuites)
 
 date.from <- "2004-01-01"
 date.to <- "2014-12-31"
-reportsuite.id <- "fairfaxau-global-prd"
+reportsuite.id <- "your_report_suite"
 metrics <- c("visits","uniquevisitors","pageviews")
 report.data.overtime <- QueueOvertime(reportsuite.id, date.from, date.to, metrics)
 View(report.data.overtime)
@@ -40,7 +40,7 @@ View(report.data.overtime)
 
 date.from <- "2014-01-01"
 date.to <- "2015-01-11"
-reportsuite.id <- "fairfaxau-mastheads-prd"
+reportsuite.id <- "your_report_suite"
 metrics <- c("visits","uniquevisitors","pageviews","event10")
 report.data <- QueueRanked(reportsuite.id, date.from, date.to, metrics, elements)
 View(report.data)
@@ -62,7 +62,7 @@ View(report.data)
 # QueueTrended - an ordered list of elements and associated metrics with time granularity.
 date.from <- "2014-01-01"
 date.to <- "2014-01-07"
-reportsuite.id <- "fairfaxau-mastheads-prd"
+reportsuite.id <- "your_report_suite"
 metrics <- c("visits","uniquevisitors","pageviews","event10")
 elements <- c("page","geoCountry","geoCity")
 
@@ -87,7 +87,7 @@ report.data <- QueueTrended(reportsuite.id, date.from, date.to, metrics, element
 
 ate.from <- "2014-01-01"
 date.to <- "2014-01-07"
-reportsuite.id <- "fairfaxau-mastheads-prd"
+reportsuite.id <- "your_report_suite"
 metric <- "pageviews"
 element <- "page"
 pattern <- c("Home","::anything::","::anything::")
@@ -98,7 +98,7 @@ report.data <- QueuePathing(reportsuite.id, date.from, date.to, metric, element,
 
 date.from <- "2014-01-01"
 date.to <- "2014-01-07"
-reportsuite.id <- "fairfaxau-mastheads-prd"
+reportsuite.id <- "your_report_suite"
 metrics <- c("visits","uniquevisitors","pageviews","event10")
 element <- "page"
 checkpoints <- c("Home","Contact","ThankYou")
