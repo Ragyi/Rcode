@@ -1,0 +1,158 @@
+homefire <- read.csv("~/Documents/R-Code/Homefire/HomeFire.csv")
+require(MASS)
+dens <- kde2d(homefire$pos_x, homefire$pos_y, homefire$time)  #overrode default bandwidth
+dens <- kde2d(homefire$pos_x, homefire$pos_y)  #overrode default bandwidth
+filled.contour(dens, col = "blue")
+filled.contour(dens, color.palette = cm.colors)
+filled.contour(dens, color.palette = terrain.colors)
+filled.contour(dens, color.palette = heat.colors)
+filled.contour(dens, color.palette = topo.colors)
+filled.contour(dens, color.palette = rainbow)
+summary(homefire)
+table(summary(homefire))
+descriptive_stats <- summary(homefire)
+descriptive_stats
+homefire$id <- as.factor(homefire$id)
+descriptive_stats <- summary(homefire)
+descriptive_stats
+summary(descriptive_stats)
+str(homefire)
+homefire$user_account <- as.factor(homefire$user_account)
+summary(homefire)
+str(homefire)
+boxplot(homefire$pos_x)
+boxplot(homefire$pos_y)
+ggplot(homefire$pos_x, aes(x=rating)) +
+geom_histogram(aes(y=..density..),      # Histogram with density instead of count on y-axis
+binwidth=.5,
+colour="black", fill="white") +
+geom_density(alpha=.2, fill="#FF6666")
+library(ggplot2)
+ggplot(homefire$pos_x, aes(x=rating)) +
+geom_histogram(aes(y=..density..),      # Histogram with density instead of count on y-axis
+binwidth=.5,
+colour="black", fill="white") +
+geom_density(alpha=.2, fill="#FF6666")
+?"ggplot"
+View(homefire)
+homefire_density <- data.frame(homefire[, 4])
+ggplot(homefire_density, aes(x=rating)) +
+geom_histogram(aes(y=..density..),      # Histogram with density instead of count on y-axis
+binwidth=.5,
+colour="black", fill="white") +
+geom_density(alpha=.2, fill="#FF6666")
+ggplot(homefire_density, aes()) +
+geom_histogram(aes(y=..density..),      # Histogram with density instead of count on y-axis
+binwidth=.5,
+colour="black", fill="white") +
+geom_density(alpha=.2, fill="#FF6666")
+ggplot(homefire_density) +
+geom_histogram(aes(y=..density..),      # Histogram with density instead of count on y-axis
+binwidth=.5,
+colour="black", fill="white") +
+geom_density(alpha=.2, fill="#FF6666")
+ggplot(homefire_density, aes(x=pos_x)) +
+geom_histogram(aes(y=..density..),      # Histogram with density instead of count on y-axis
+binwidth=.5,
+colour="black", fill="white") +
+geom_density(alpha=.2, fill="#FF6666")
+ggplot(homefire_density, aes(x=homefire$pos_x)) +
+geom_histogram(aes(y=..density..),      # Histogram with density instead of count on y-axis
+binwidth=.5,
+colour="black", fill="white") +
+geom_density(alpha=.2, fill="#FF6666")
+plot(homefire$pos_x)
+plot(homefire$pos_y)
+plot(homefire$pos_y ~ homefire$pos_x)
+?MASS
+filled.contour(dens, color.palette = terrain.colors)
+library("car")
+scatter3d(x=homefire$pos_x, z=homefire$pos_y, y=homefire$time)
+View(homefire)
+scatter3d(pos_x ~ pos_y * time, data=homefire, groups=factor(homefire$event), fit="smooth")
+scatter3d(pos_x ~ pos_y * time, data=homefire, groups=factor(homefire$event), fit="smooth", surface=FALSE, ellipsoid=TRUE, grid=FALSE)
+scatter3d(time ~ pos_y * pos_x, data=homefire, groups=factor(homefire$event), fit="smooth", surface=FALSE, ellipsoid=TRUE, grid=FALSE)
+scatter3d(pos_y ~ time * pos_x, data=homefire, groups=factor(homefire$event), fit="smooth", surface=FALSE, ellipsoid=TRUE, grid=FALSE)
+scatter3d(pos_y ~ pos_x * time, data=homefire, groups=factor(homefire$event), fit="smooth", surface=FALSE, ellipsoid=TRUE, grid=FALSE)
+scatter3d(pos_x ~ pos_y * time, data=homefire, groups=factor(homefire$event), fit="smooth", surface=FALSE, ellipsoid=TRUE, grid=FALSE)
+scatter3d(x=homefire$pos_x, z=homefire$pos_y, y=homefire$time)
+scatter3d(pos_x ~ pos_y * time, data=homefire, groups=factor(homefire$event), fit="smooth", surface=FALSE, ellipsoid=TRUE, grid=FALSE)
+scatter3d(time ~ pos_y * pos_x, data=homefire, groups=factor(homefire$event), fit="smooth", surface=FALSE, ellipsoid=TRUE, grid=FALSE)
+3dgraph <- scatter3d(time ~ pos_y * pos_x, data=homefire, groups=factor(homefire$event), fit="smooth", surface=FALSE, ellipsoid=TRUE, grid=FALSE)
+3graph <- scatter3d(time ~ pos_y * pos_x, data=homefire, groups=factor(homefire$event), fit="smooth", surface=FALSE, ellipsoid=TRUE, grid=FALSE)
+scatter3d(time ~ pos_y * pos_x, data=homefire, groups=factor(homefire$event), fit="smooth", surface=FALSE, ellipsoid=TRUE, grid=FALSE)
+scatter3d(time ~ pos_y * pos_x, data=homefire, groups=factor(homefire$event), fit="smooth")
+scatter3d(time ~ pos_y * pos_x, data=homefire, groups=factor(homefire$event), surface=FALSE)
+scatter3d(time ~ pos_y * pos_x, data=homefire, groups=factor(homefire$event), fit = "smooth")
+scatter3d(x=homefire$pos_x, z=homefire$pos_y, y=homefire$time)
+homefire.clusters <- kmeans(homefire, 3)
+homefire.clusters <- kmeans(homefire$pos_x, 3)
+homefire.clusters
+homefire.clusters$centers
+plot(homefire$pos_x, col = homefire.clusters$cluster)
+plot(homefire$pos_x ~ homefire$pos_y, col = homefire.clusters$cluster)
+filled.contour(dens, col = homefire.clusters$cluster)
+filled.contour(dens)
+filled.contour(dens, color.palette = homefire.clusters$cluster)
+filled.contour(dens, col(homefire.clusters$cluster))
+plot(homefire$pos_x ~ homefire$pos_y, col = homefire.clusters$cluster)
+library(datasets)
+iris.features <- iris
+#Remove Species attribute
+iris.features$Species <- NULL
+View(iris.features)
+#Check for NAs
+table(is.na(iris.features))
+#Run algorithm
+iris.means <- kmeans(iris.features, 3)
+iris.means
+iris.means$centers
+#Print Results
+results <- table(iris$Species, iris.means$cluster)
+results
+#Plot results, and compare them to original iris species
+plot(iris[c("Petal.Length", "Petal.Width")], col = iris.means$cluster)
+plot(iris[c("Petal.Length", "Petal.Width")], col = iris$Species)
+plot(homefire[c("pos_x", "pos_y"), col = homefire.clusters$cluster]
+plot(homefire[c("pos_x", "pos_y")], col = homefire.clusters$cluster)
+qplot(homefire[c("pos_x", "pos_y")], col = homefire.clusters$cluster)
+plot(homefire[c("pos_x", "pos_y")], col = homefire.clusters$cluster)
+library(shiny)
+runApp("shiny")
+getwd()
+setwd()
+runApp("shiny")
+rrunApp("shiny")
+runApp("shiny")
+library(shinyapps)
+deployApp("shiny")
+library(devtools)
+devtools::install_github('rstudio/packrat')
+deployApp("shiny")
+deployApp("shiny")
+getwd()
+setwd("~/Documents/R-Code/Homefire")
+library(twitteR)
+library(sentiment)
+library(plyr)
+library(ggplot2)
+library(wordcloud)
+library(RColorBrewer)
+install.packages(c("twitteR", "sentiment", "wordcloud"), dependencies = TRUE)
+library(twitteR)
+library(sentiment)
+install.packages("~/Downloads/sentiment_0.2.tar.gz", repos = NULL, type = "source")
+library(tm.lexicon.GeneralInquirer)
+install.packages("tm")
+library(tm)
+install.packages("tm.plugin.sentiment")
+install.packages("tm.lexicon.GeneralInquirer", repos="http://datacube.wu.ac.at", type="source")
+library(tm.lexicon.GeneralInquirer)
+install.packages("tm.plugin.sentiment", repos="http://R-Forge.R-project.org")
+library(tm.plugin.sentiment) # posted comments on SO about this not working
+install.packages("tm.plugin.sentiment", repos="http://R-Forge.R-project.org", type = "source")
+library(tm.plugin.sentiment) # posted comments on SO about this not working
+library(tm)
+library(sentiment)
+some_tweets = searchTwitter("starbucks", n=1500, lang="en")
+some_tweets = searchTwitter("starbucks", n=1500, lang="en")
